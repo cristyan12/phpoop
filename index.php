@@ -3,8 +3,13 @@ declare(strict_types=1);
 
 class Person
 {
-    public string $firstName;
-    public string $lastName;
+    protected string $firstName;
+    protected string $lastName;
+    protected string $nickname;
+    protected string $birthDate;
+    protected int $changedNickname = 0;
+
+    // TODO: Add Birth date and valid that a nickname >= 3 chars
 
     public function __construct(string $firstName, string $lastName)
     {
@@ -12,19 +17,55 @@ class Person
         $this->lastName = $lastName;
     }
 
-    public function fullName(): string
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function getFullName(): string
     {
         return "{$this->firstName} {$this->lastName}";
     }
 
-    public function __toString(): string
+    public function getNickname(): string
     {
-        return $this->fullName();
+        return strtolower($this->nickname);
+    }
+
+    public function getBirthDate(): string
+    {
+        return $this->birthDate;
+    }
+
+    public function setBirthDate(string $birthDate): void
+    {
+        $this->birthDate = $birthDate;
+    }
+
+    public function setNickname(string $nickname): void
+    {
+        if ($this->changedNickname >= 2) {
+            throw new Exception(
+                "You can't change a nickname more than 2 times."
+            );
+        }
+
+        $this->nickname = $nickname;
+
+        $this->changedNickname++;
     }
 }
 
-$cristyan = new Person('Cristyan', 'Valera');
+$person = new Person('Cristyan', 'Valera');
 
-$yusmely = new Person('Yusmely', 'Garcia');
+$person->setBirthDate('21/12/1981');
+$person->setNickname('CRISTYAN12');
 
-var_dump("{$cristyan} es amigo de {$yusmely}");
+var_dump("Nombre: {$person->getFullName()}");
+var_dump("Nickname: {$person->getNickname()}");
+var_dump("Fecha de nacimiento: {$person->getBirthDate()}");
