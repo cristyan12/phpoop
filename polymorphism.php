@@ -34,7 +34,7 @@ abstract class Unit
 
     public function takeDamage(float $damage): void
     {
-        $this->hp = $this->hp - $this->absorbDamage($damage);
+        $this->hp -= $this->absorbDamage($damage);
 
         show("{$this->name} => {$this->hp} puntos de vida.");
 
@@ -69,9 +69,25 @@ class BronzeArmor implements Armor
     }
 }
 
+class SilverArmor implements Armor
+{
+    public function absorbDamage(float $damage): float
+    {
+        return $damage / 3;
+    }
+}
+
+class CursedArmor implements Armor
+{
+    public function absorbDamage(float $damage): float
+    {
+        return $damage * 2;
+    }
+}
+
 class Soldier extends Unit
 {
-    protected int $damage = 40;
+    protected float $damage = 40;
     protected ?Armor $armor = null;
 
     public function __construct(string $name)
@@ -103,7 +119,7 @@ class Soldier extends Unit
 
 class Archer extends Unit
 {
-    protected int $damage = 30;
+    protected float $damage = 30;
 
     public function attack(Unit $opponent): void
     {
@@ -113,14 +129,13 @@ class Archer extends Unit
     }
 }
 
-$armor = new BronzeArmor();
+$soldier = new Soldier('Soldado Umbopa');
+$archer = new Archer('Arquero Sir Henry');
 
-$soldier = new Soldier('Ramm');
-$archer = new Archer('Silence');
+$soldier->setArmor(new CursedArmor);
 
 $archer->attack($soldier);
-
 $soldier->attack($archer);
-$soldier->setArmor($armor);
 
 $archer->attack($soldier);
+$soldier->attack($archer);
