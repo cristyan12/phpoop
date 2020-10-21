@@ -5,16 +5,10 @@ namespace Beleriand;
 class Soldier extends Unit
 {
     protected float $damage = 40;
-    protected ?Armor $armor = null;
 
     public function __construct(string $name)
     {
         parent::__construct($name);
-    }
-
-    public function setArmor(?Armor $armor = null): void
-    {
-        $this->armor = $armor;
     }
 
     public function attack(Unit $opponent): void

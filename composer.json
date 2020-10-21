@@ -1,0 +1,19 @@
+{
+    "name": "beleriand/phpoop",
+    "description": "Proyecto demo para el curso de POO con PHP",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cristyan Valera",
+            "email": "cristyan.valera@mail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "files": ["src/helpers.php"],
+        "psr-4": {
+            "Beleriand\\": "src/"
+        }
+    }
+}

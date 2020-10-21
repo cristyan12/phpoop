@@ -1,8 +1,6 @@
 <?php
 
-namespace Warcraft;
-
-use Beleriand\Armor;
+namespace Beleriand\Armors;
 
 class BronzeArmor implements Armor
 {

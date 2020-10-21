@@ -1,6 +1,6 @@
 <?php
 
-namespace Beleriand;
+namespace Beleriand\Armors;
 
 interface Armor
 {

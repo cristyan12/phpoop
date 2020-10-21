@@ -1,11 +1,10 @@
 <?php
 
-use Warcraft\BronzeArmor;
-use Beleriand\{Archer, CursedArmor, Soldier};
+namespace Beleriand;
 
-require 'src/autoload.php';
-require 'src/helpers.php';
-require 'vendor/BronzeArmor.php';
+use Beleriand\Armors\CursedArmor;
+
+require '../vendor/autoload.php';
 
 $soldier = new Soldier('Soldado Umbopa');
 $archer = new Archer('Arquero Sir Henry');

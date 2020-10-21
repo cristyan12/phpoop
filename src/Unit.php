@@ -2,6 +2,8 @@
 
 namespace Beleriand;
 
+use Beleriand\Armors\Armor;
+
 abstract class Unit
 {
     protected float $hp = 40;
@@ -20,6 +22,11 @@ abstract class Unit
     public function getHp(): float
     {
         return $this->hp;
+    }
+
+    public function setArmor(?Armor $armor = null): void
+    {
+        $this->armor = $armor;
     }
 
     public function move(string $direction): void
