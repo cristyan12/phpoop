@@ -1,5 +1,7 @@
 <?php
 
+namespace Beleriand;
+
 class Soldier extends Unit
 {
     protected float $damage = 40;

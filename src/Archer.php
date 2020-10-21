@@ -1,5 +1,7 @@
 <?php
 
+namespace Beleriand;
+
 class Archer extends Unit
 {
     protected float $damage = 30;

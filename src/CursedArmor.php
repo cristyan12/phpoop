@@ -1,5 +1,7 @@
 <?php
 
+namespace Beleriand;
+
 class CursedArmor implements Armor
 {
     public function absorbDamage(float $damage): float

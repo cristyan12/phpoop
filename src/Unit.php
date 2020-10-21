@@ -1,5 +1,7 @@
 <?php
 
+namespace Beleriand;
+
 abstract class Unit
 {
     protected float $hp = 40;

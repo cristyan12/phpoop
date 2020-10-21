@@ -1,8 +1,11 @@
 <?php
 
-require_once 'src/helpers.php';
+use Warcraft\BronzeArmor;
+use Beleriand\{Archer, CursedArmor, Soldier};
 
-spl_autoload_register(fn (string $className) => require "src/$className.php");
+require 'src/autoload.php';
+require 'src/helpers.php';
+require 'vendor/BronzeArmor.php';
 
 $soldier = new Soldier('Soldado Umbopa');
 $archer = new Archer('Arquero Sir Henry');
