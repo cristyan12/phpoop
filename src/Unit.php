@@ -3,15 +3,19 @@
 namespace Beleriand;
 
 use Beleriand\Armors\Armor;
+use Beleriand\Weapons\Weapon;
 
 abstract class Unit
 {
     protected float $hp = 40;
     protected string $name;
+    protected ?Armor $armor = null;
+    protected Weapon $weapon;
 
-    public function __construct(string $name)
+    public function __construct(string $name, Weapon $weapon)
     {
         $this->name = $name;
+        $this->weapon = $weapon;
     }
 
     public function getName(): string
@@ -26,7 +30,18 @@ abstract class Unit
 
     public function setArmor(?Armor $armor = null): void
     {
-        $this->armor = $armor;
+        if ($this->armor) {
+            $this->armor = $armor;
+        }
+    }
+
+    public function absorbDamage(float $damage): float
+    {
+        if ($this->armor) {
+            $damage = $this->armor->absorbDamage($damage);
+        }
+
+        return $damage;
     }
 
     public function move(string $direction): void
@@ -34,7 +49,12 @@ abstract class Unit
         show("{$this->name} camina hacia $direction");
     }
 
-    abstract public function attack(Unit $opponent): void;
+    public function attack(Unit $opponent): void
+    {
+        $this->weapon->getDescription($this, $opponent);
+
+        $opponent->takeDamage($this->weapon->getDamage());
+    }
 
     public function takeDamage(float $damage): void
     {
@@ -52,10 +72,5 @@ abstract class Unit
         show("{$this->name} muere");
 
         exit();
-    }
-
-    protected function absorbDamage(float $damage): float
-    {
-        return $damage;
     }
 }

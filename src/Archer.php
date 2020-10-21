@@ -2,15 +2,12 @@
 
 namespace Beleriand;
 
+use Beleriand\Weapons\Bow;
+
 class Archer extends Unit
 {
-    protected float $damage = 30;
-
-    public function attack(Unit $opponent): void
+    public function __construct(string $name, Bow $bow)
     {
-        show("{$this->name} dispara una flecha a {$opponent->getName()}");
-
-        $opponent->takeDamage($this->damage);
+        parent::__construct($name, $bow);
     }
 }
-

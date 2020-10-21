@@ -2,17 +2,12 @@
 
 namespace Beleriand;
 
-use Beleriand\Armors\CursedArmor;
-
 require '../vendor/autoload.php';
 
-$soldier = new Soldier('Soldado Umbopa');
-$archer = new Archer('Arquero Sir Henry');
+$soldado = new Soldier('Soldado', new Weapons\BasicSword);
 
-$soldier->setArmor(new CursedArmor);
+$arquero = new Archer('Arquero', new Weapons\BasicBow);
 
-$archer->attack($soldier);
-$soldier->attack($archer);
+$arquero->attack($soldado);
 
-$archer->attack($soldier);
-$soldier->attack($archer);
+$soldado->attack($arquero);
