@@ -25,7 +25,7 @@ class Translator
         return isset(static::$messages[$key]);
     }
 
-    public static function replaceParams($message, array $params): string
+    public static function replaceParams(string $message, array $params): string
     {
         foreach ($params as $key => $value) {
             $message = str_replace(":$key", $value, $message);
