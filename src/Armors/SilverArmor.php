@@ -2,10 +2,16 @@
 
 namespace Beleriand\Armors;
 
+use Beleriand\Attack;
+
 class SilverArmor implements Armor
 {
-    public function absorbDamage(float $damage): float
+    public function absorbDamage(Attack $attack): float
     {
-        return $damage / 3;
+        if ($attack->isPhysical()) {
+            return $attack->getDamage() / 3;
+        }
+
+        return $attack->getDamage();
     }
 }

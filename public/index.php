@@ -4,9 +4,15 @@ namespace Beleriand;
 
 require '../vendor/autoload.php';
 
-$soldado = new Soldier('Soldado', new Weapons\BasicSword);
+$soldado = new Unit('Soldado', new Weapons\BasicSword);
 
-$arquero = new Archer('Arquero', new Weapons\BasicBow);
+// $soldado->setArmor(new Armors\SilverArmor);
+
+$arquero = new Unit('Arquero', new Weapons\CrossBow);
+
+$arquero->attack($soldado);
+
+$soldado->attack($arquero);
 
 $arquero->attack($soldado);
 

@@ -2,7 +2,9 @@
 
 namespace Beleriand\Armors;
 
+use Beleriand\Attack;
+
 interface Armor
 {
-    public function absorbDamage(float $damage): float;
+    public function absorbDamage(Attack $attack): float;
 }

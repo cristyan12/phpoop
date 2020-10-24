@@ -5,7 +5,7 @@ namespace Beleriand;
 use Beleriand\Armors\Armor;
 use Beleriand\Weapons\Weapon;
 
-abstract class Unit
+class Unit
 {
     protected float $hp = 40;
     protected string $name;
@@ -15,6 +15,16 @@ abstract class Unit
     public function __construct(string $name, Weapon $weapon)
     {
         $this->name = $name;
+        $this->weapon = $weapon;
+    }
+
+    public function setArmor(Armor $armor): void
+    {
+        $this->armor = $armor;
+    }
+
+    public function setWeapon(Weapon $weapon): void
+    {
         $this->weapon = $weapon;
     }
 
@@ -28,37 +38,27 @@ abstract class Unit
         return $this->hp;
     }
 
-    public function setArmor(?Armor $armor = null): void
+    public function absorbDamage(Attack $attack): float
     {
         if ($this->armor) {
-            $this->armor = $armor;
-        }
-    }
-
-    public function absorbDamage(float $damage): float
-    {
-        if ($this->armor) {
-            $damage = $this->armor->absorbDamage($damage);
+            return $this->armor->absorbDamage($attack);
         }
 
-        return $damage;
-    }
-
-    public function move(string $direction): void
-    {
-        show("{$this->name} camina hacia $direction");
+        return $attack->getDamage();
     }
 
     public function attack(Unit $opponent): void
     {
-        $this->weapon->getDescription($this, $opponent);
+        $attack = $this->weapon->createAttack();
 
-        $opponent->takeDamage($this->weapon->getDamage());
+        show($attack->getDescription($this, $opponent));
+
+        $opponent->takeDamage($attack);
     }
 
-    public function takeDamage(float $damage): void
+    public function takeDamage(Attack $attack): void
     {
-        $this->hp -= $this->absorbDamage($damage);
+        $this->hp -= $this->absorbDamage($attack);
 
         show("{$this->name} => {$this->hp} puntos de vida.");
 

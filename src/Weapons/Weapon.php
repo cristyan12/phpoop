@@ -2,16 +2,16 @@
 
 namespace Beleriand\Weapons;
 
-use Beleriand\Unit;
+use Beleriand\Attack;
 
 abstract class Weapon
 {
     protected float $damage = 0;
+    protected bool $magical = false;
+    protected string $description = ':unit ataca a :opponent';
 
-    public function getDamage(): float
+    public function createAttack(): Attack
     {
-        return $this->damage;
+        return new Attack($this->damage, $this->magical, $this->description);
     }
-
-    abstract public function getDescription(Unit $attacker, Unit $opponent): void;
 }

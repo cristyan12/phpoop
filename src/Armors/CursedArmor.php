@@ -2,10 +2,12 @@
 
 namespace Beleriand\Armors;
 
+use Beleriand\Attack;
+
 class CursedArmor implements Armor
 {
-    public function absorbDamage(float $damage): float
+    public function absorbDamage(Attack $attack): float;
     {
-        return $damage * 2;
+        return $attack->getDamage() * 2;
     }
 }
