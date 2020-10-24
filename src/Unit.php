@@ -3,19 +3,21 @@
 namespace Beleriand;
 
 use Beleriand\Armors\Armor;
+use Beleriand\Armors\MissingArmor;
 use Beleriand\Weapons\Weapon;
 
 class Unit
 {
     protected float $hp = 40;
     protected string $name;
-    protected ?Armor $armor = null;
+    protected Armor $armor;
     protected Weapon $weapon;
 
     public function __construct(string $name, Weapon $weapon)
     {
         $this->name = $name;
         $this->weapon = $weapon;
+        $this->armor = new MissingArmor();
     }
 
     public function setArmor(Armor $armor): void
@@ -38,15 +40,6 @@ class Unit
         return $this->hp;
     }
 
-    public function absorbDamage(Attack $attack): float
-    {
-        if ($this->armor) {
-            return $this->armor->absorbDamage($attack);
-        }
-
-        return $attack->getDamage();
-    }
-
     public function attack(Unit $opponent): void
     {
         $attack = $this->weapon->createAttack();
@@ -58,7 +51,7 @@ class Unit
 
     public function takeDamage(Attack $attack): void
     {
-        $this->hp -= $this->absorbDamage($attack);
+        $this->hp -= $this->armor->absorbDamage($attack);
 
         show("{$this->name} => {$this->hp} puntos de vida.");
 

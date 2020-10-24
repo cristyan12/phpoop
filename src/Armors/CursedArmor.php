@@ -4,7 +4,7 @@ namespace Beleriand\Armors;
 
 use Beleriand\Attack;
 
-class CursedArmor implements Armor
+class CursedArmor extends Armor
 {
     public function absorbDamage(Attack $attack): float;
     {
