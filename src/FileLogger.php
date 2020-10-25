@@ -2,9 +2,9 @@
 
 namespace Beleriand;
 
-class FileLogger
+class FileLogger implements Logger
 {
-    public static function info(string $message): void
+    public function info(string $message): void
     {
         file_put_contents(
             __DIR__ . '/../storage/log.txt',

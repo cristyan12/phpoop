@@ -2,9 +2,9 @@
 
 namespace Beleriand;
 
-class HtmlLogger
+class HtmlLogger implements Logger
 {
-    public static function info(string $message): void
+    public function info(string $message): void
     {
         echo "<p>$message</p>";
     }

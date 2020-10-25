@@ -63,7 +63,7 @@ class Unit
     {
         $attack = $this->weapon->createAttack();
 
-        FileLogger::info($attack->getDescription($this, $opponent));
+        Log::info($attack->getDescription($this, $opponent));
 
         $opponent->takeDamage($attack);
     }
@@ -72,7 +72,7 @@ class Unit
     {
         $this->hp -= $this->armor->absorbDamage($attack);
 
-        FileLogger::info("{$this->name} ahora le quedan {$this->hp} puntos de vida.");
+        Log::info("{$this->name} ahora le quedan {$this->hp} puntos de vida.");
 
         if ($this->getHp() <= 0) {
             $this->die();
@@ -81,7 +81,7 @@ class Unit
 
     private function die(): void
     {
-        FileLogger::info("{$this->name} muere");
+        Log::info("{$this->name} muere");
 
         exit();
     }
