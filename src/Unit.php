@@ -3,7 +3,6 @@
 namespace Beleriand;
 
 use Beleriand\Armors\Armor;
-use Beleriand\Armors\MissingArmor;
 use Beleriand\Weapons\Weapon;
 
 class Unit
@@ -17,17 +16,37 @@ class Unit
     {
         $this->name = $name;
         $this->weapon = $weapon;
-        $this->armor = new MissingArmor();
+        $this->armor = new Armors\MissingArmor();
     }
 
-    public function setArmor(Armor $armor): void
+    public static function createArquer(string $name): Unit
+    {
+        $arquer = new Unit($name, new Weapons\BasicBow);
+
+        return $arquer;
+    }
+
+    public static function createSoldier(string $name): Unit
+    {
+        $soldier = new Unit($name, new Weapons\BasicSword);
+
+        $soldier->setArmor(new Armors\BronzeArmor);
+
+        return $soldier;
+    }
+
+    public function setArmor(Armor $armor): self
     {
         $this->armor = $armor;
+
+        return $this;
     }
 
-    public function setWeapon(Weapon $weapon): void
+    public function setWeapon(Weapon $weapon): self
     {
         $this->weapon = $weapon;
+
+        return $this;
     }
 
     public function getName(): string
