@@ -12,10 +12,10 @@ Translator::set([
     'BasicSwordAttack' => ':unit ataca con la espada a :opponent',
 ]);
 
-$cristyan = Unit::createSoldier('cristyan')
+$soldado = Unit::createSoldier('cristyan')
     ->setArmor(new Armors\SilverArmor);
 
-$crismely = Unit::createArquer('crismely')
+$arquero = Unit::createArcher('crismely')
     ->setArmor(new Armors\BronzeArmor)
     ->setWeapon(new Weapons\FireBow);
 

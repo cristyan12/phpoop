@@ -19,7 +19,7 @@ class Unit
         $this->armor = new Armors\MissingArmor();
     }
 
-    public static function createArquer(string $name): Unit
+    public static function createArcher(string $name): Unit
     {
         $arquer = new Unit($name, new Weapons\BasicBow);
 
@@ -63,7 +63,7 @@ class Unit
     {
         $attack = $this->weapon->createAttack();
 
-        show($attack->getDescription($this, $opponent));
+        FileLogger::info($attack->getDescription($this, $opponent));
 
         $opponent->takeDamage($attack);
     }
@@ -72,7 +72,7 @@ class Unit
     {
         $this->hp -= $this->armor->absorbDamage($attack);
 
-        show("{$this->name} => {$this->hp} puntos de vida.");
+        FileLogger::info("{$this->name} ahora le quedan {$this->hp} puntos de vida.");
 
         if ($this->getHp() <= 0) {
             $this->die();
@@ -81,7 +81,7 @@ class Unit
 
     private function die(): void
     {
-        show("{$this->name} muere");
+        FileLogger::info("{$this->name} muere");
 
         exit();
     }
