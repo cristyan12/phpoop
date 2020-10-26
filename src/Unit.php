@@ -7,6 +7,8 @@ use Beleriand\Weapons\Weapon;
 
 class Unit
 {
+    const MAX_DAMAGE = 100;
+
     protected float $hp = 40;
     protected string $name;
     protected Armor $armor;
@@ -70,13 +72,22 @@ class Unit
 
     public function takeDamage(Attack $attack): void
     {
-        $this->hp -= $this->armor->absorbDamage($attack);
+        $this->setHp($this->armor->absorbDamage($attack));
 
         Log::info("{$this->name} ahora le quedan {$this->hp} puntos de vida.");
 
         if ($this->getHp() <= 0) {
             $this->die();
         }
+    }
+
+    protected function setHp(float $damage): void
+    {
+        if ($damage > self::MAX_DAMAGE) {
+            $damage = self::MAX_DAMAGE;
+        }
+
+        $this->hp -= $damage;
     }
 
     private function die(): void
