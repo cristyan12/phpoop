@@ -4,26 +4,19 @@ namespace Beleriand;
 
 require '../vendor/autoload.php';
 
-Translator::set([
-    'Weapon' => ':unit ataca a :opponent',
-    'BasicBowAttack' => ':unit dispara una flecha a :opponent',
-    'FireBowAttack' => ':unit dispara una flecha de fuego a :opponent',
-    'CrossBowAttack' => ':unit dispara con la ballesta a :opponent',
-    'BasicSwordAttack' => ':unit ataca con la espada a :opponent',
+$user = new User([
+    'first_name' => 'Cristyan',
+    'last_name' => 'Valera',
 ]);
 
-Log::setLogger(new HtmlLogger);
+$user->nickname = 'cristyan12';
 
-$soldado = Unit::createSoldier('cristyan')
-    ->setArmor(new Armors\SilverArmor);
+echo "<pre>";
 
-$arquero = Unit::createArcher('crismely')
-    ->setWeapon(new Weapons\FireBow);
+var_dump($user);
 
-$soldado->attack($arquero);
+exit();
 
-$arquero->attack($soldado);
+echo "<p>Nickname: {$user->nickname}</p>";
 
-$soldado->attack($arquero);
-
-$arquero->attack($soldado);
+echo "<p>Bienvenido, {$user->first_name} {$user->last_name}</p>";

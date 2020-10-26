@@ -1,9 +1,0 @@
-(2020-10-25 16:52:07) cristyan ataca con la espada a crismely
-(2020-10-25 16:52:07) crismely ahora le quedan 30 puntos de vida.
-(2020-10-25 16:52:07) crismely dispara una flecha de fuego a cristyan
-(2020-10-25 16:52:07) cristyan ahora le quedan 10 puntos de vida.
-(2020-10-25 16:52:07) cristyan ataca con la espada a crismely
-(2020-10-25 16:52:07) crismely ahora le quedan 20 puntos de vida.
-(2020-10-25 16:52:07) crismely dispara una flecha de fuego a cristyan
-(2020-10-25 16:52:07) cristyan ahora le quedan -20 puntos de vida.
-(2020-10-25 16:52:07) cristyan muere
