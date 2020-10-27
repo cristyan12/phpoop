@@ -8,14 +8,16 @@ class HtmlNode
     protected string $content;
     protected array $attributes = [];
 
-    public function __construct(string $tag, string $content = '', array $attributes = [])
+    public function __construct(string $tag,
+                                string $content = '',
+                                array $attributes = [])
     {
         $this->tag = $tag;
         $this->content = $content;
         $this->attributes = $attributes;
     }
 
-    public static function __callStatic(string $method, array $args = []): HtmlNode
+    public static function __callStatic(string $method, array $args = []): self
     {
         $content = $args[0] ?? '';
 
@@ -30,7 +32,6 @@ class HtmlNode
             throw new \Exception(
                 "You forgot to pass the value to the attribute $method"
             );
-
         }
 
         $this->attributes[$method] = $args[0];
