@@ -39,12 +39,12 @@ abstract class Model
 
     protected function hasGetMutator(string $name): bool
     {
-        return method_exists($this, 'get'.str::studly($name).'Attribute');
+        return method_exists($this, 'get'.Str::studly($name).'Attribute');
     }
 
     protected function mutateAttribute(string $name, string $value): string
     {
-        return $this->{'get'.str::studly($name).'Attribute'}($value);
+        return $this->{'get'.Str::studly($name).'Attribute'}($value);
     }
 
     public function getAttributeValue(string $name): string
