@@ -4,15 +4,10 @@ namespace Beleriand;
 
 require '../vendor/autoload.php';
 
-// $node = HtmlNode::input()
-//     ->class('container row col-md-6')
-//     ->type('date')
-//     ->name('content')
-//     ->id('content')
-//     ->value('1981-12-21');
+$node = HtmlNode::textarea('Beleriand')
+    ->name('content')
+    ->id('contenido');
 
-$node = (new HtmlNode('input'))
-    ->name('hola')
-    ->type('number');
+// echo "<pre>";
 
-echo $node->render();
+var_dump($node('name'), $node('width', 100));

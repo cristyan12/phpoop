@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Beleriand;
 
@@ -8,13 +9,38 @@ class HtmlNode
     protected string $content;
     protected array $attributes = [];
 
-    public function __construct(string $tag,
-                                string $content = '',
-                                array $attributes = [])
+    public function __construct(string $tag, string $content = '', array $attributes = [])
     {
         $this->tag = $tag;
         $this->content = $content;
         $this->attributes = $attributes;
+    }
+
+    /**
+     * LLama al método get()
+     *
+     * @param   int|null  $default
+     * @return  string|null
+    */
+    public function __invoke(string $name, $default = null)
+    {
+        return $this->get($name, $default);
+    }
+
+    /**
+     * Obtiene la clave del array dado
+     *
+     * @param   int|null  $default
+     * @return  string|null
+    */
+    public function get(string $name, $default = null)
+    {
+        return $this->attributes[$name] ?? $default;
+    }
+
+    public function __toString(): string
+    {
+        return $this->render();
     }
 
     public static function __callStatic(string $method, array $args = []): self
