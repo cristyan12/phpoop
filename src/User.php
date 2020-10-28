@@ -1,33 +1,32 @@
 <?php
+declare(strict_types=1);
 
 namespace Beleriand;
 
 class User extends Model
 {
-    private string $dbPass = 'SECRET';
+    protected LunchBox $lunch;
 
-    public function __toString(): string
+    public function __construct(array $attributes = [])
     {
-        return "nombre: {$this->name}\remail: {$this->email}";
+        parent::__construct($attributes);
+
+        $this->lunch = new LunchBox();  // Null Objects
     }
 
-    public function __sleep(): array
+    public function setLunch(LunchBox $lunch): void
     {
-        return ['attributes'];
+        $this->lunch = $lunch;
     }
 
-    public function __wakeup(): void
+    public function eat(): void
     {
-        //
-    }
+        // Happy path
+        if ($this->lunch->isEmpty()) {
+            throw new \Exception(
+                "{$this->name} no tiene nada para comer :(");
+        }
 
-    public function getFirstNameAttribute(string $value): string
-    {
-        return Str::studly($value);
-    }
-
-    public function getLastNameAttribute(string $value): string
-    {
-        return Str::studly($value);
+        echo "<p>{$this->name} alumerza {$this->lunch->shift()}</p>";
     }
 }

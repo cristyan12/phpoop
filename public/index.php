@@ -4,13 +4,32 @@ namespace Beleriand;
 
 require '../vendor/autoload.php';
 
-$user = new User([
-    'name' => 'Cristyan',
-    'email' => 'admin@beleriand.com',
-]);
+$gordon = new User(['name' => 'Gordon']);
 
-$result = serialize($user);
+// Daugthers
+$joanie = new User(['name' => 'Joanie']);
 
-print_r($result);
+$hailey = new User(['name' => 'Hailey']);
 
-file_put_contents('../storage/user.log', $result);
+// House
+$lunchBox = new LunchBox(['Sandwich']);
+
+$lunchBox2 = clone $lunchBox;
+
+// School
+$joanie->setLunch($lunchBox);
+
+$hailey->setLunch($lunchBox2);
+
+// Lunch
+try {
+    $joanie->eat();
+
+    $hailey->eat();
+
+    echo "<pre>";
+
+    var_dump($lunchBox, $lunchBox2);
+} catch (\Exception $e) {
+    echo "Error: {$e->getMessage()}";
+}
