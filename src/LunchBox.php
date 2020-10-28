@@ -3,7 +3,12 @@ declare(strict_types=1);
 
 namespace Beleriand;
 
-class LunchBox implements \Iterator
+use IteratorAggregate;
+use Traversable;
+use ArrayIterator;
+use Countable;
+
+class LunchBox implements IteratorAggregate, Countable
 {
     protected array $food = [];
     protected bool $original = false;
@@ -33,46 +38,13 @@ class LunchBox implements \Iterator
         return empty($this->food);
     }
 
-    public function current()
+    public function count(): int
     {
-        $var = current($this->food);
-
-        echo "<p>Actual: $var</p>";
+        return count($this->food);
     }
 
-    public function key()
+    public function getIterator(): Traversable
     {
-        $var = key($this->food);
-
-        echo "<p>Clave: $var</p>";
-
-        return $var;
-    }
-
-    public function next()
-    {
-        $var = next($this->food);
-
-        echo "<p>Siguiente: $var</p>";
-
-        return $var;
-    }
-
-    public function rewind(): void
-    {
-        echo "<p>Rebobinando</p>";
-
-        reset($this->food);
-    }
-
-    public function valid(): bool
-    {
-        $clave = key($this->food);
-
-        $var = ($clave !== NULL && $clave !== FALSE);
-
-        echo "<p>Válido: $var</p>";
-
-        return $var;
+        return new ArrayIterator($this->food);
     }
 }

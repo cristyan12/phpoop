@@ -25,13 +25,17 @@ class User extends Model
             throw new \Exception("{$this->name} no tiene nada para comer :(");
         }
 
-        echo "<p>{$this->name} alumerza {$this->lunch->shift()}</p>";
+        Str::info("{$this->name} alumerza {$this->lunch->shift()}");
     }
 
     public function eatMeal(): void
     {
+        $total = $this->lunch->count();
+
+        Str::info("{$this->name} tiene {$total} alimentos");
+
         foreach ($this->lunch as $food) {
-            echo "<p>{$this->name} eats {$food}</p>";
+            Str::info("{$this->name} eats {$food}");
         }
     }
 }

@@ -49,7 +49,11 @@ abstract class Model
 
     public function getAttributeValue(string $name): string
     {
-        return $this->attributes[$name] ?? $name;
+        if (array_key_exists($name, $this->attributes)) {
+            return $this->attributes[$name];
+        }
+
+        return $name;
     }
 
     public function hasAttribute(string $name): bool

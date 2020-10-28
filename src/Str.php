@@ -10,4 +10,9 @@ class Str
 
         return str_replace(' ', '', $result);
     }
+
+    public static function info(string $message): void
+    {
+        echo "<p>{$message}</p>";
+    }
 }
