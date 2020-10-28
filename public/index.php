@@ -4,10 +4,13 @@ namespace Beleriand;
 
 require '../vendor/autoload.php';
 
-$node = HtmlNode::textarea('Beleriand')
-    ->name('content')
-    ->id('contenido');
+$user = new User([
+    'name' => 'Cristyan',
+    'email' => 'admin@beleriand.com',
+]);
 
-// echo "<pre>";
+$result = serialize($user);
 
-var_dump($node('name'), $node('width', 100));
+print_r($result);
+
+file_put_contents('../storage/user.log', $result);
