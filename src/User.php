@@ -18,7 +18,7 @@ class User extends Model
 
     public function __wakeup(): void
     {
-
+        //
     }
 
     public function getFirstNameAttribute(string $value): string
