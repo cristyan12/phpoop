@@ -21,12 +21,17 @@ class User extends Model
 
     public function eat(): void
     {
-        // Happy path
         if ($this->lunch->isEmpty()) {
-            throw new \Exception(
-                "{$this->name} no tiene nada para comer :(");
+            throw new \Exception("{$this->name} no tiene nada para comer :(");
         }
 
         echo "<p>{$this->name} alumerza {$this->lunch->shift()}</p>";
+    }
+
+    public function eatMeal(): void
+    {
+        foreach ($this->lunch as $food) {
+            echo "<p>{$this->name} eats {$food}</p>";
+        }
     }
 }

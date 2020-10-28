@@ -9,27 +9,17 @@ $gordon = new User(['name' => 'Gordon']);
 // Daugthers
 $joanie = new User(['name' => 'Joanie']);
 
-$hailey = new User(['name' => 'Hailey']);
-
 // House
-$lunchBox = new LunchBox(['Sandwich']);
-
-$lunchBox2 = clone $lunchBox;
+$lunchBox = new LunchBox(['Sandwich', 'Jugo de naranja', 'Papas', 'Manzana']);
 
 // School
 $joanie->setLunch($lunchBox);
 
-$hailey->setLunch($lunchBox2);
-
 // Lunch
 try {
-    $joanie->eat();
-
-    $hailey->eat();
-
-    echo "<pre>";
-
-    var_dump($lunchBox, $lunchBox2);
+    $joanie->eatMeal();
 } catch (\Exception $e) {
+    echo "Error: {$e->getMessage()}";
+} catch (\TypeError $e) {
     echo "Error: {$e->getMessage()}";
 }
