@@ -32,10 +32,22 @@ class User extends Model
     {
         $total = $this->lunch->count();
 
+        $food = $this->lunch->filter(fn($food) => ! $food->beverage);
+
+        $beverage = $this->lunch->filter(fn($food) => $food->beverage);
+
+        echo "<pre>";
+        print_r($food);
+        print_r($beverage);
+
         Str::info("{$this->name} tiene {$total} alimentos");
 
-        foreach ($this->lunch as $food) {
-            Str::info("{$this->name} eats {$food}");
+        foreach ($food as $item) {
+            Str::info("{$this->name} come {$item->name}");
+        }
+
+        foreach ($beverage as $item) {
+            Str::info("{$this->name} toma {$item->name}");
         }
     }
 }

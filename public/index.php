@@ -2,6 +2,10 @@
 
 namespace Beleriand;
 
+use Beleriand\Food;
+use Beleriand\LunchBox;
+use Beleriand\User;
+
 require '../vendor/autoload.php';
 
 $gordon = new User(['name' => 'Gordon']);
@@ -9,8 +13,13 @@ $gordon = new User(['name' => 'Gordon']);
 // Daugthers
 $joanie = new User(['name' => 'Joanie']);
 
-// House
-$lunchBox = new LunchBox(['Sandwich', 'Jugo de naranja', 'Papas', 'Manzana']);
+$lunchBox = new LunchBox([
+    new Food(['name' => 'Sandwich', 'beverage' => false]),
+    new Food(['name' => 'Papas']),
+    new Food(['name' => 'Emparedado de atún']),
+    new Food(['name' => 'Jugo de naranja', 'beverage' => true]),
+    new Food(['name' => 'Jugo de manzana', 'beverage' => true]),
+]);
 
 // School
 $joanie->setLunch($lunchBox);
