@@ -30,20 +30,22 @@ class User extends Model
 
     public function eatMeal(): void
     {
-        $total = $this->lunch->count();
-
         $food = $this->lunch->filter(fn($food) => ! $food->beverage);
 
         $beverage = $this->lunch->filter(fn($food) => $food->beverage);
 
-        Str::info("<b>{$this->name} tiene {$total} alimentos</b>");
+        Str::info(
+            "<b>{$this->name} tiene {$this->lunch->count()} alimentos</b>"
+        );
 
-        Str::info("<b>Alimentos:</b>");
+        Str::info("<b>Alimentos: {$food->count()}</b>");
+
         foreach ($food as $item) {
             Str::info(" - {$item->name}");
         }
 
-        Str::info("<b>Bebidas:</b>");
+        Str::info("<b>Bebidas: {$beverage->count()}</b>");
+
         foreach ($beverage as $item) {
             Str::info(" - {$item->name}");
         }
