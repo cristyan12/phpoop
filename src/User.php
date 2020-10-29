@@ -36,18 +36,16 @@ class User extends Model
 
         $beverage = $this->lunch->filter(fn($food) => $food->beverage);
 
-        echo "<pre>";
-        print_r($food);
-        print_r($beverage);
+        Str::info("<b>{$this->name} tiene {$total} alimentos</b>");
 
-        Str::info("{$this->name} tiene {$total} alimentos");
-
+        Str::info("<b>Alimentos:</b>");
         foreach ($food as $item) {
-            Str::info("{$this->name} come {$item->name}");
+            Str::info(" - {$item->name}");
         }
 
+        Str::info("<b>Bebidas:</b>");
         foreach ($beverage as $item) {
-            Str::info("{$this->name} toma {$item->name}");
+            Str::info(" - {$item->name}");
         }
     }
 }
