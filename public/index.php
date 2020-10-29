@@ -1,34 +1,38 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Beleriand;
 
-use Beleriand\Food;
-use Beleriand\LunchBox;
-use Beleriand\User;
-
 require '../vendor/autoload.php';
 
-$gordon = new User(['name' => 'Gordon']);
+class Person
+{
+    public int $id = 0;
+    public string $name;
+    public bool $online = false;
 
-// Daugthers
-$joanie = new User(['name' => 'Joanie']);
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
 
-$lunchBox = new LunchBox([
-    new Food(['name' => 'Sandwich', 'beverage' => false]),
-    new Food(['name' => 'Papas']),
-    new Food(['name' => 'Emparedado de atún']),
-    new Food(['name' => 'Jugo de naranja', 'beverage' => true]),
-    new Food(['name' => 'Jugo de manzana', 'beverage' => true]),
-]);
-
-// School
-$joanie->setLunch($lunchBox);
-
-// Lunch
-try {
-    $joanie->eatMeal();
-} catch (\Exception $e) {
-    echo "Error: {$e->getMessage()}";
-} catch (\TypeError $e) {
-    echo "Error: {$e->getMessage()}";
+    public function is(object $otherObject): bool
+    {
+        return $this->id === $otherObject->id;
+    }
 }
+
+$cristyan = new Person('Cristyan');
+$cristyan->id = 1;
+$cristyan->online = true;
+
+$cristyan2 = new Person('Cristyan');
+$cristyan2->id = 1;
+
+echo "<pre>";
+
+echo ($cristyan->is($cristyan2)) ? 'VERDADERO' : 'FALSO';
+
+echo "<br>";
+
+echo get_class($cristyan). "<br>";
+echo get_class($cristyan2). "\n";
