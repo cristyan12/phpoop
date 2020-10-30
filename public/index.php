@@ -4,35 +4,60 @@ namespace Beleriand;
 
 require '../vendor/autoload.php';
 
-class Person
+// Traits
+trait CanPerformBasicActions
 {
-    public int $id = 0;
-    public string $name;
-    public bool $online = false;
-
-    public function __construct(string $name)
+    public function move(): void
     {
-        $this->name = $name;
-    }
-
-    public function is(object $otherObject): bool
-    {
-        return $this->id === $otherObject->id;
+        echo "<p>Caminó</p>";
     }
 }
 
-$cristyan = new Person('Cristyan');
-$cristyan->id = 1;
-$cristyan->online = true;
+trait CanRide
+{
+    public function move(): void
+    {
+        echo "<p>Cabalgó</p>";
+    }
+}
 
-$cristyan2 = new Person('Cristyan');
-$cristyan2->id = 1;
+trait CanShootArrows
+{
+    public function shoot()
+    {
+        echo "<p>Disparó</p>";
+    }
 
-echo "<pre>";
+    abstract public function getArrows(): int;
+}
 
-echo ($cristyan->is($cristyan2)) ? 'VERDADERO' : 'FALSO';
+// Classes
 
-echo "<br>";
+class Knight
+{
+    use CanRide;
+}
 
-echo get_class($cristyan). "<br>";
-echo get_class($cristyan2). "\n";
+
+class MountedArcher
+{
+    use CanRide;
+    use CanShootArrows;
+
+    public int $arrows = 20;
+
+    public function getArrows(): int
+    {
+        return 100;
+    }
+
+    public function move(): void
+    {
+        echo "<p>El método de la clase sobreescribe al mismo método del trait. Como el método de la clase puede sobreescribir al método heredado.</p>";
+    }
+}
+
+$mountedArcher = new MountedArcher();
+$mountedArcher->shoot();
+
+echo "<p>{$mountedArcher->getArrows()}</p>";
