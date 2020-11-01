@@ -7,10 +7,10 @@ use Carbon\Carbon;
 
 class User extends Model
 {
-    public function getAgeAttribute(): string
+    public function getAgeAttribute(): int
     {
         $date = Carbon::createFromFormat('d/m/Y', $this->birthDate);
 
-        return (string) $date->age;
+        return $date->age;
     }
 }

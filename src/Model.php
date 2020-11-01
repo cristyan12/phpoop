@@ -45,7 +45,7 @@ abstract class Model
 
     protected function mutateAttribute(string $name, string $value): string
     {
-        return $this->{'get'.Str::studly($name).'Attribute'}($value);
+        return (string) $this->{'get'.Str::studly($name).'Attribute'}($value);
     }
 
     public function getAttributeValue(string $name): string

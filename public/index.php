@@ -10,4 +10,10 @@ $user = new User([
     'birthDate' => '07/09/1959',
 ]);
 
-echo "{$user->name} tiene {$user->age} años";
+try {
+    echo "{$user->name} tiene {$user->age} años";
+} catch (\TypeError $e) {
+    echo "<pre>";
+    Str::info("TypeError: {$e->getMessage()}. \r\nFile: {$e->getFile()}({$e->getLine()}).");
+    Str::info("Trace: \r\n{$e->getTraceAsString()}");
+}
