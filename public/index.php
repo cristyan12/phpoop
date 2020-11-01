@@ -1,63 +1,29 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace Beleriand;
 
+// require '../vendor/Laravel/Macroable.php';
+// require '../vendor/Laravel/HtmlBuilder.php';
 require '../vendor/autoload.php';
 
-// Traits
-trait CanPerformBasicActions
-{
-    public function move(): void
-    {
-        echo "<p>Caminó</p>";
-    }
+use Laravel\HtmlBuilder;
+
+try {
+    HtmlBuilder::macro('success', function(string $message): string {
+        return "<p style=\"background-color: #dff0d8;
+            border-color: #d0e9c6; color: #3c763d;
+            padding: 10px\">{$message}</p>" . $this->hr();
+    });
+
+    HtmlBuilder::macro('p', fn(string $text): string => "<p>{$text}</p>");
+
+    $html = new HtmlBuilder();
+
+    echo $html->success("Todo salió bien!");
+
+    echo $html->p('Esta es una prueba de un párrafo.');
+
+} catch (\BadMethodCallException $e) {
+    echo "BadMethodCallException: {$e->getMessage()}";
 }
-
-trait CanRide
-{
-    public function move(): void
-    {
-        echo "<p>Cabalgó</p>";
-    }
-}
-
-trait CanShootArrows
-{
-    public function shoot()
-    {
-        echo "<p>Disparó</p>";
-    }
-
-    abstract public function getArrows(): int;
-}
-
-// Classes
-
-class Knight
-{
-    use CanRide;
-}
-
-
-class MountedArcher
-{
-    use CanRide;
-    use CanShootArrows;
-
-    public int $arrows = 20;
-
-    public function getArrows(): int
-    {
-        return 100;
-    }
-
-    public function move(): void
-    {
-        echo "<p>El método de la clase sobreescribe al mismo método del trait. Como el método de la clase puede sobreescribir al método heredado.</p>";
-    }
-}
-
-$mountedArcher = new MountedArcher();
-$mountedArcher->shoot();
-
-echo "<p>{$mountedArcher->getArrows()}</p>";

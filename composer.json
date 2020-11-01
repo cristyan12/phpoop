@@ -13,7 +13,8 @@
     "autoload": {
         "files": ["src/helpers.php"],
         "psr-4": {
-            "Beleriand\\": "src/"
+            "Beleriand\\": "src/",
+            "Laravel\\": "vendor/Laravel"
         }
     }
 }
