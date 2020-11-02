@@ -6,14 +6,13 @@ namespace Beleriand;
 require '../vendor/autoload.php';
 
 $user = new User([
-    'name' => 'Walter White',
+    'first_name' => 'Walter',
+    'last_name' => 'White',
     'birthDate' => '07/09/1959',
 ]);
 
 try {
-    echo "{$user->name} tiene {$user->age} años";
+    echo "{$user->full_name} tiene {$user->age} años";
 } catch (\TypeError $e) {
-    echo "<pre>";
-    Str::info("TypeError: {$e->getMessage()}. \r\nFile: {$e->getFile()}({$e->getLine()}).");
-    Str::info("Trace: \r\n{$e->getTraceAsString()}");
+    Str::printError($e);
 }

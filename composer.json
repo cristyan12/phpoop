@@ -18,5 +18,8 @@
             "Beleriand\\": "src/",
             "Laravel\\": "vendor/Laravel"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9"
     }
 }
