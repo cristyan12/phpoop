@@ -1,4 +1,5 @@
 <?php
+namespace Tests;
 
 use Beleriand\Str;
 use PHPUnit\Framework\TestCase;
@@ -11,5 +12,6 @@ class StrTest extends TestCase
         $this->assertSame('Name', Str::studly('name'));
         $this->assertSame('FullName', Str::studly('full_name'));
         $this->assertSame('BirthDate', Str::studly('birth_date'));
+        $this->assertSame('GivenField', Str::studly('given-field'));
     }
 }
