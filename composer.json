@@ -16,7 +16,7 @@
         "files": ["src/helpers.php"],
         "psr-4": {
             "Beleriand\\": "src/",
-            "Laravel\\": "vendor/Laravel"
+            "HtmlBuilder\\": "vendor/Html"
         }
     },
     "require-dev": {
