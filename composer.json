@@ -15,8 +15,7 @@
     "autoload": {
         "files": ["src/helpers.php"],
         "psr-4": {
-            "Beleriand\\": "src/",
-            "HtmlBuilder\\": "vendor/Html"
+            "Beleriand\\": "src/"
         }
     },
     "autoload-dev": {

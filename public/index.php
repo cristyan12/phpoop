@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Beleriand;
 
-use HtmlBuilder\HtmlBuilder;
+use Beleriand\Html\HtmlBuilder;
 
 require '../vendor/autoload.php';
 
